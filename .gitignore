@@ -1,0 +1,52 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and package caches
+node_modules/
+.pnpm-store/
+.npm/
+
+# Build, coverage, and compiler output
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Local runtime data and imported Instagram exports
+data/
+your_instagram_activity/
+*.kml
+
+# Local usage and recovery files
+.codex-recovery/
+.codex-recovery-app.js
+*.tmp
+*.corrupt
+
+# Internal specifications, plans, reports, agents, and skills
+docs/superpowers/
+.superpowers/
+.agents/
+.codex/
+.claude/
+skills/
+SKILL.md
+
+# Generated design and experiment artifacts
+hatch-runs/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

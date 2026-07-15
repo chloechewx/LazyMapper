@@ -1,0 +1,9 @@
+import { Building2, Check, MapPin } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog";
+import type { GoogleCandidate, Place } from "@/types";
+
+export function GoogleCandidateDialog({ place, candidates, open, onOpenChange, onChoose }: { place: Place | null; candidates: GoogleCandidate[]; open: boolean; onOpenChange: (open: boolean) => void; onChoose: (candidate: GoogleCandidate) => void }) {
+  return <Dialog open={open} onOpenChange={onOpenChange} title="Choose the official Google listing" description={place ? `Search results for ${place.placeName}` : undefined}><div className="max-h-[65vh] overflow-y-auto p-4">{candidates.length ? <div className="space-y-2">{candidates.map((candidate) => <article key={candidate.id} className="rounded-[7px] border border-[#d1d9d7] bg-[#f8faf9] p-4"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><div className="flex items-center gap-2"><Building2 className="size-4 shrink-0 text-[#55706b]" /><h3 className="truncate text-sm font-extrabold">{candidate.name}</h3></div><p className="mt-2 flex gap-1.5 text-xs leading-5 text-[#65706f]"><MapPin className="mt-0.5 size-3.5 shrink-0" />{candidate.address || "No formatted address returned"}</p><div className="mt-3 flex flex-wrap gap-2"><Badge tone="blue">{candidate.type || "Place"}</Badge><Badge tone={candidate.businessStatus === "OPERATIONAL" ? "mint" : "neutral"}>{candidate.businessStatus?.replaceAll("_", " ") || "Status unknown"}</Badge></div></div><Button size="sm" onClick={() => onChoose(candidate)}><Check className="size-3.5" />Use</Button></div></article>)}</div> : <div className="p-8 text-center text-sm text-[#65706f]">No Google Places candidates were returned. Edit the place name or city and search again.</div>}</div></Dialog>;
+}
